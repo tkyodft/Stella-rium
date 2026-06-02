@@ -1,0 +1,62 @@
+---
+// src/components/InfoStripSection.astro
+//
+// A labelled column for use inside the info strip.
+// Props:
+//   heading — the column title
+
+interface Props {
+    heading: string;
+}
+
+const { heading } = Astro.props;
+---
+
+<div class="info-cell">
+    <h3 class="cell-label">{heading}</h3>
+    <slot />
+</div>
+
+<style lang="scss">
+    @use "../styles/mixins" as *;
+
+    .info-cell {
+        padding: 1.5rem 1.625rem;
+        border-bottom: 1px solid var(--rule);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        @include md {
+            border-right: 1px solid var(--rule);
+            border-bottom: none;
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+
+    .cell-label {
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--plum);
+        margin-block: 0 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--rule);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            background: var(--plum-pale);
+            border-radius: 50%;
+            display: inline-block;
+        }
+    }
+</style>

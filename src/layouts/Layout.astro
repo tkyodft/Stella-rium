@@ -1,0 +1,59 @@
+---
+// src/layouts/Layout.astro
+//
+// Props:
+//   title       — page title, appended to site name in the <title> tag
+//   description — meta description for SEO
+//   showHero    — show the banner on this page (default: true)
+
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import InfoStrip from "../components/InfoStrip.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+
+interface Props {
+    title?: string;
+    description?: string;
+    showHero?: boolean;
+}
+
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, showHero = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead title={title} description={description} />
+    </head>
+    <body>
+        <div class="site">
+            <Hero />
+            <Header />
+            <main>
+                <slot />
+            </main>
+            <InfoStrip />
+            <Footer />
+        </div>
+    </body>
+</html>
+
+<style lang="scss">
+    @use "../styles/mixins" as *;
+
+    .site {
+        width: 100%;
+
+        @include lg {
+            max-width: 90rem;
+            margin-inline: auto;
+        }
+    }
+
+    main {
+        background: var(--white);
+        padding: 2.25rem 3rem 2.75rem;
+    }
+</style>

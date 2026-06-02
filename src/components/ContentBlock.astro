@@ -1,0 +1,75 @@
+---
+// src/components/ContentBlock.astro
+//
+// Props:
+//   heading  — text for the plum heading pill
+//   divider  — show the star divider below the slot content (default: false)
+
+interface Props {
+    heading: string;
+    divider?: boolean;
+}
+
+const { heading, divider = false } = Astro.props;
+---
+
+<div class="content-header">
+    <h2 class="content-heading">{heading}</h2>
+</div>
+
+<div class="content-body">
+    <slot />
+</div>
+
+{
+    divider && (
+        <div class="star-divider" aria-hidden="true">
+            <span class="line" />
+            <span class="star" />
+            <span class="star" />
+            <span class="star" />
+            <span class="line" />
+        </div>
+    )
+}
+
+<style lang="scss">
+    @use "../styles/mixins" as *;
+
+    .content-heading {
+        display: inline-block;
+        @include type-scale("lg");
+        font-weight: 600;
+        color: var(--white);
+        background: var(--plum);
+        padding: 0.5rem 1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-block: 1rem;
+        border-left: 4px solid var(--plum-dim);
+    }
+
+    .entry-body p {
+        text-indent: 2em;
+    }
+
+    .star-divider {
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+        margin-block: 1.5rem;
+
+        .line {
+            flex: 1;
+            height: 1px;
+            background: var(--rule);
+            display: block;
+        }
+
+        .star::before {
+            content: "\2605";
+            @include type-scale("sm");
+            color: var(--plum-pale);
+        }
+    }
+</style>

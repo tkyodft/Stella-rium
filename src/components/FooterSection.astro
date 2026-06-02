@@ -1,0 +1,32 @@
+---
+// src/components/FooterSection.astro
+//
+// A labelled column for use inside the footer.
+// Props:
+//   heading — the column title
+
+interface Props {
+    heading: string;
+}
+
+const { heading } = Astro.props;
+---
+
+<div class="footer-col">
+    <h3 class="footer-head">{heading}</h3>
+    <slot />
+</div>
+
+<style lang="scss">
+    @use "../styles/mixins" as *;
+
+    .footer-head {
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-block: 0 0.75rem;
+        padding-inline: 0.75rem;
+        border-left: 3px solid var(--plum);
+    }
+</style>

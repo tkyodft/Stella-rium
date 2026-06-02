@@ -1,0 +1,83 @@
+---
+// src/components/Button.astro
+//
+// Props:
+//   variant  — 'primary' | 'ghost' (default: 'primary')
+//   href     — if provided, renders an <a> tag instead of <button>
+//   type     — button type attribute (default: 'button')
+//   class    — any extra classes to pass through
+
+interface Props {
+    variant?: "primary" | "ghost";
+    href?: string;
+    type?: "button" | "submit" | "reset";
+    class?: string;
+}
+
+const { variant = "primary", href: linkHref, type = "button", class: className } = Astro.props;
+---
+
+{
+    linkHref ? (
+        <a href={linkHref} class:list={["btn", `btn--${variant}`, className]}>
+            <slot />
+        </a>
+    ) : (
+        <button type={type} class:list={["btn", `btn--${variant}`, className]}>
+            <slot />
+        </button>
+    )
+}
+
+<style lang="scss">
+    @use "../styles/mixins" as *;
+
+    .btn {
+        font-family: var(--font-raleway), sans-serif;
+        @include type-scale("xs");
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        cursor: pointer;
+        padding: 0.625rem 1.75rem;
+        transition:
+            background 0.15s,
+            color 0.15s,
+            border-color 0.15s;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: none;
+        white-space: nowrap;
+        border-radius: 25px;
+        border: 1px solid transparent;
+
+        &:focus-visible {
+            outline: 2px solid var(--plum-light);
+            outline-offset: 3px;
+        }
+    }
+
+    .btn--primary {
+        background: var(--plum);
+        color: var(--white);
+        border-color: var(--plum);
+
+        &:hover {
+            background: var(--plum-dim);
+            border-color: var(--plum-dim);
+            color: var(--white);
+        }
+    }
+
+    .btn--ghost {
+        background: transparent;
+        color: var(--plum);
+        border-color: var(--plum-pale);
+
+        &:hover {
+            background: var(--plum);
+            color: var(--white);
+            border-color: var(--plum);
+        }
+    }
+</style>

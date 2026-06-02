@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContentBlock from "../components/ContentBlock.astro";
+import Button from "../components/Button.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+    <ContentBlock heading="Stella-rium" divider={true}>
+        <p>
+            <strong>Lorem ipsum</strong>
+            <a href="/contact">dolor sit</a> amet, consectetur <em>adipiscing</em> elit. Phasellus <u>scelerisque</u> eros
+            sollicitudin, dignissim ipsum at, elementum velit. Cras efficitur sed dolor non facilisis. Fusce non eros aliquam,
+            vulputate leo tincidunt, semper elit. Cras vel vulputate ligula.
+        </p>
+        <p>
+            Cras sollicitudin, quam at hendrerit vulputate, elit nisi accumsan ligula, et pulvinar sem urna ut turpis.
+            Cras bibendum odio id massa condimentum, sed sollicitudin mauris hendrerit. Duis mollis porttitor efficitur.
+            Morbi malesuada, eros sit amet luctus condimentum.
+        </p>
+        <p>
+            Nunc lacus justo, lobortis ut sodales sit amet, facilisis eu ante. Integer eleifend dolor sed ullamcorper
+            posuere. Etiam nec lobortis massa. Quisque pulvinar urna lorem, sed consectetur massa ultricies ut.
+        </p>
+    </ContentBlock>
+
+    <ContentBlock heading="Input styles">
+        <form>
+            <div class="field--inline">
+                <label for="demo-text">Text</label>
+                <input type="text" id="demo-text" placeholder="Your name" />
+            </div>
+            <div class="field--inline">
+                <label for="demo-email">Email</label>
+                <input type="email" id="demo-email" placeholder="you@domain.com" />
+            </div>
+            <div class="field--inline">
+                <label for="demo-url">URL</label>
+                <input type="url" id="demo-url" placeholder="https://" />
+            </div>
+            <div class="field--inline">
+                <label for="demo-select">Select</label>
+                <select id="demo-select">
+                    <option>Option one</option>
+                    <option>Option two</option>
+                    <option>Option three</option>
+                </select>
+            </div>
+            <div class="field--inline field--textarea">
+                <label for="demo-textarea">Message</label>
+                <textarea id="demo-textarea" placeholder="Your message here..."></textarea>
+            </div>
+            <div class="buttons">
+                <Button variant="primary" type="button">Primary button</Button>
+                <Button variant="ghost" type="button">Ghost button</Button>
+            </div>
+        </form>
+    </ContentBlock>
+</Layout>

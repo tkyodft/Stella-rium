@@ -1,0 +1,114 @@
+---
+// src/components/InfoStrip.astro
+import { INFO_STRIP_LINKS, AFFILIATES } from "../consts";
+import InfoStripSection from "./InfoStripSection.astro";
+---
+
+<div class="info-strip">
+    <InfoStripSection heading="Lorem ipsum">
+        <p class="cell-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus scelerisque eros sollicitudin, dignissim
+            ipsum at, elementum velit. Cras efficitur sed dolor non facilisis. Fusce non eros aliquam, vulputate leo
+            tincidunt, semper elit. Cras vel vulputate ligula.
+        </p>
+    </InfoStripSection>
+
+    <InfoStripSection heading="Lorem ipsum">
+        <ul class="cell-links" role="list">
+            {
+                INFO_STRIP_LINKS.map(({ href, label }) => (
+                    <li>
+                        <a href={href}>{label}</a>
+                    </li>
+                ))
+            }
+        </ul>
+    </InfoStripSection>
+
+    <InfoStripSection heading="Affiliates">
+        <div class="affil-wrap">
+            {
+                AFFILIATES.map(({ label, href }) => (
+                    <a class="affil-pill" href={href}>
+                        {label}
+                    </a>
+                ))
+            }
+            <a class="affil-pill" href="#">+ Apply</a>
+        </div>
+    </InfoStripSection>
+</div>
+
+<style lang="scss">
+    @use "../styles/mixins" as *;
+
+    .info-strip {
+        display: grid;
+        background: var(--white);
+
+        border-top: 2px solid var(--plum);
+
+        @include md {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    .cell-text {
+        @include type-scale("sm");
+        color: var(--ink-mid);
+        line-height: 1.75;
+        font-weight: 300;
+        margin-bottom: 0;
+    }
+
+    .cell-links {
+        list-style: none;
+    }
+
+    .cell-links li a {
+        display: block;
+        @include type-scale("sm");
+        color: var(--plum);
+        padding: 0.25rem 0;
+        border-bottom: 1px solid #f0eaf4;
+        border-left: none;
+        font-weight: 300;
+        transition:
+            padding-inline 0.13s,
+            color 0.13s;
+
+        &:hover {
+            padding-inline: 0.5rem;
+            color: var(--plum-dim);
+        }
+    }
+
+    .cell-links li:last-child a {
+        border-bottom: none;
+    }
+
+    .affil-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3125rem;
+
+        .affil-pill {
+            @include type-scale("sm");
+            text-transform: lowercase;
+            color: var(--plum);
+            border: 1px solid var(--plum-pale);
+            padding: 0.1875rem 0.625rem;
+            border-radius: 20px;
+            font-weight: 400;
+            transition:
+                background 0.14s,
+                color 0.14s;
+
+            &:hover {
+                background: var(--plum);
+                color: var(--white);
+                border-color: var(--plum);
+            }
+        }
+    }
+</style>

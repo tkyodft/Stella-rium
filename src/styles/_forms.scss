@@ -1,0 +1,108 @@
+// src/styles/_forms.scss
+@use "./mixins" as *;
+
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-weight: 300;
+    @include type-scale("sm");
+    color: var(--ink);
+    background: var(--off-white);
+    border: 1px solid var(--rule);
+    outline: none;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+
+    &:focus {
+        border-color: var(--plum-light);
+        background: var(--white);
+    }
+
+    &::placeholder {
+        color: var(--ink-faint);
+        font-weight: 300;
+    }
+}
+
+textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.7;
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239888a0' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+    cursor: pointer;
+
+    &:focus {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239888a0' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 32px;
+        cursor: pointer;
+    }
+}
+
+label {
+    display: block;
+    @include type-scale("xs");
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-block: 0 0.3125rem;
+}
+
+// Field wrapper — label stacked above input
+.field {
+    margin-block: 0 0.875rem;
+
+    &:last-child {
+        margin-block: 0;
+    }
+}
+
+// Inline variant — label and input side by side (desktop)
+.field--inline {
+    display: grid;
+    gap: 0.3125rem;
+    margin-block: 0 0.875rem;
+
+    @include md {
+        grid-template-columns: 120px minmax(0, 1fr);
+        align-items: center;
+        gap: 0.75rem;
+
+        label {
+            text-align: right;
+            margin-block: 0;
+        }
+    }
+}
+
+.field--inline.field--textarea {
+    @include md {
+        align-items: flex-start;
+
+        label {
+            padding-block: 0.625rem 0;
+        }
+    }
+}
+
+.buttons {
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
