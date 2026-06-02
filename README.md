@@ -1,7 +1,9 @@
 # Stella-rium
+
 A free, premade website design built with [Astro](https://astro.build). Features a responsive layout, fluid typography, and a purple/charcoal colour palette. Designed to be easy to customise with minimal code changes.
 
 ### Installation and Commands
+
 | Command                                                | Action                                                  |
 | :----------------------------------------------------- | :------------------------------------------------------ |
 | `git clone https://github.com/tkyodft/stella-rium.git` | Download or clone this repository                       |
@@ -13,9 +15,11 @@ A free, premade website design built with [Astro](https://astro.build). Features
 | `npm run astro -- --help`                              | Get help using the Astro CLI                            |
 
 ## Customization
+
 Almost everything you need to change lives in one file: `src/consts.ts`
 
 Open it and update:
+
 - `SITE_TITLE` — your site name, appears in the nav, page title, and footer
 - `SITE_DESCRIPTION` — used in meta tags for SEO
 - `SITE_EST` — the year your site was established, used in the footer copyright
@@ -25,14 +29,16 @@ Open it and update:
 - `CREDITS` — resources you want to credit in the footer
 
 ### Images
+
 Any static assets, like images, can be placed in the `public/` directory.
 
-| File                   | Used for         |
-| ---------------------- | ---------------- |
-| `imgs/stella-rium.png` | Hero banner      |
-| `imgs/background.png`  | Background image |
+| File                        | Used for         |
+| --------------------------- | ---------------- |
+| `src/assets/header.webp`    | Hero banner      |
+| `src/assets/background.png` | Background image |
 
 ### Adding pages
+
 Create a new file in `src/pages/`. As an example, `src/pages/About.astro`:
 
 ```astro
@@ -47,6 +53,7 @@ import ContentBlock from "../components/ContentBlock.astro";
     </ContentBlock>
 </Layout>
 ```
+
 `<Layout title="about" showHero={true}>` - wraps the entire page in the base layout, you always need this.
 `title="about"` - sets the `<title>` tag
 `<ContentBlock heading="about" divider={true}>` - renders the content wrapper with the plum heading pill and star divider at the end.
@@ -75,6 +82,7 @@ export const NAV_LINKS = [
 ```
 
 ### Adding a contact form
+
 Create `src/pages/contact.astro`, then
 
 ```astro
@@ -85,22 +93,22 @@ import Button from "../components/Button.astro";
 ---
 
 <Layout title="contact" showHero={true}>
-    <ContentBlock heading="contact">
-        Take the contact form from `pages/index.astro` and put it here.
-    </ContentBlock>
+    <ContentBlock heading="contact"> Take the contact form from `pages/index.astro` and put it here. </ContentBlock>
 </Layout>
 
 <style lang="scss">
-    Take the contents of `styles/_forms.scss` and put it here.
+    /* Take the contents of `styles/_forms.scss` and put it here. */
 </style>
 ```
 
 Then edit `styles/global.scss` and remove `@use "./forms";`. This removes it from the global styles and scopes the SCSS to your Contact page.
 
 ## Deployment
+
 After editing the `constants.ts` file to your liking, you're ready to deploy (create a production ready version). There are plenty options for you to choose from.
 
 ### Netlify
+
 1. Push your project to GitHub
 2. Go to Go to [netlify.com](https://netlify.com) and click on the "Add new project" button.
 3. Under "Import a Git repository", choose GitHub and choose the repository we just committed. I do recommend choosing "Only select repositories".
@@ -109,11 +117,14 @@ After editing the `constants.ts` file to your liking, you're ready to deploy (cr
 You would do something similar as above for [vercel.com](https://vercel.com).
 
 ### Static hosting
+
 1. Build the project locally:
-Run
+   Run
+
 ```bash
 npm run build
 ```
+
 2. Upload the contents of the `dist/` folder to your server
 
 ## License
